@@ -9,7 +9,7 @@ mydb = db.connect(
     database = "Cine"
 )
 
-def consultarDB():
+def consultarDB1():
     
     print("\n==> Lista de los directores que tienen más de 3 películas\n")
     print("  ----------------------------------------------------------------------")
@@ -25,7 +25,8 @@ def consultarDB():
     print("  ----------------------------------------------------------------------\n")
 
     
-    
+def consultarDB2():
+
     print("\n==> Ranking de actores y cantidad de películas\n")
     print("  ----------------------------------------------------------------------")
     cursor = mydb.cursor()
@@ -40,7 +41,7 @@ def consultarDB():
     print("  ----------------------------------------------------------------------\n")
 
 
-
+def consultarDB3():
 
     print("\n==> Lista de películas, el año, su director y el puntaje (ranking) solo para las películas con ranking mayor a 8\n")
     print("  -------------------------------------------------------------------------------------------------")
@@ -56,4 +57,42 @@ def consultarDB():
     print("  -------------------------------------------------------------------------------------------------\n")
 
 
-consultarDB()
+def solicitar_accion():
+    print("Ingrese una opcion:\n") 
+    print("=> [1] Lista de los directores que tienen más de 3 películas")
+    print("\n=> [2] Ranking de actores y cantidad de películas")
+    print("\n=> [3] Ranking de películas con puntaje mayor a 8")
+    print("\n=> [0] Salir")
+    
+    seleccion = input("\nIndique su elección (0, 1, 2, 3): ")
+    while seleccion not in "0123":
+        seleccion = input("\n==> Elección no válida <==\nIndique su elección (0, 1, 2, 3): ")
+    seleccion = int(seleccion)
+    return seleccion
+
+def main():
+    
+    try:
+        salir = False
+        print("\n********** ¡Bienvenid@! **********")
+        while not salir:
+            accion = solicitar_accion()
+            if accion == 1:
+                consultarDB1()  
+            elif accion == 2:
+                consultarDB2()
+            elif accion == 3:
+                consultarDB3()
+            elif accion == 0:
+                salir = True
+                print("\n********** ¡Adiós! **********\n")
+            else:
+                print("\n==> Elección no válida <==")
+
+    except mysql.connector.IntegrityError as error:
+            print("\n=> ID ya existe en DB, favor revisar datos a ingresar!\n")
+    
+        
+
+if __name__ == "__main__":
+    main()
