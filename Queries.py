@@ -1,6 +1,5 @@
 import mysql.connector as db
 import mysql
-import time
 
 mydb = db.connect(
     host = "localhost",
