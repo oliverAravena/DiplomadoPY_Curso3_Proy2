@@ -25,7 +25,7 @@ def consultarDB_con_Pandas():
 
     df_loc = df1.loc[0:9, ["Pelicula","Puntaje"]]
 
-    df_iloc = df1.iloc[20:51]
+    df_iloc = df1.iloc[20:51, 0:4]
 
 
     print("\n-------------------- Data Frame Origen desde la Base de datos --------------------------------------\n")
